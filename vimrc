@@ -19,6 +19,9 @@ set noantialias
 set splitbelow
 set splitright
 
+" Map <leader> to ,
+let mapleader = ","
+
 " Theme and colors
 colorscheme desert
 set background=dark
@@ -28,9 +31,6 @@ set encoding=utf-8
 
 " Highlight line number of where cursor currently is
 hi CursorLineNr guifg=#050505
-
-" Plugins
-filetype plugin indent on
 
 " Command aliases
 cabbrev tp tabprev
@@ -50,7 +50,19 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 let g:fuzzy_ignore = "*.pyc;coverage/**;"
 let g:ctrlp_match_window = 'results:25' " Generate more search results 
 
-" NERDTree settings
+" Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+" Disable style checking
+let g:syntastic_quiet_messages = { "type": "style" }
+
+" NERDTree
 map <C-\> :NERDTreeToggle<CR>
 map <C-]> :NERDTreeFind<CR>  
 
@@ -66,6 +78,9 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+" Plugins
+filetype plugin indent on
 
 execute pathogen#infect()
 call pathogen#helptags()
