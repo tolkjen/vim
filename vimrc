@@ -29,9 +29,6 @@ set encoding=utf-8
 "set t_Co=256
 "colorscheme desert256
 
-" Highlight line number of where cursor currently is
-hi CursorLineNr guifg=#050505
-
 " Command aliases
 cabbrev tp tabprev
 cabbrev tn tabnext
@@ -78,6 +75,13 @@ if executable('ag')
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
 endif
+
+" YCM
+set completeopt=menuone
+let g:ycm_add_preview_to_completeopt = 0
+nnoremap <leader>j :YcmCompleter GoTo<CR>
+hi Pmenu ctermbg=DarkGrey ctermfg=White 
+hi PmenuSel ctermbg=White ctermfg=DarkGrey 
 
 " Plugins
 filetype plugin indent on
