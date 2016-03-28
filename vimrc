@@ -23,11 +23,10 @@ set splitright
 let mapleader = ","
 
 " Theme and colors
-colorscheme desert
+set t_Co=256
 set background=dark
+colorscheme monochrome
 set encoding=utf-8
-"set t_Co=256
-"colorscheme desert256
 
 " Command aliases
 cabbrev tp tabprev
@@ -45,7 +44,7 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 
 " Ctrl-P
 let g:fuzzy_ignore = "*.pyc;coverage/**;"
-let g:ctrlp_match_window = 'results:25' " Generate more search results 
+let g:ctrlp_match_window = 'results:25' " Generate more search results
 
 " Syntastic
 "set statusline+=%#warningmsg#
@@ -61,7 +60,7 @@ let g:syntastic_quiet_messages = { "type": "style" }
 
 " NERDTree
 map <C-\> :NERDTreeToggle<CR>
-map <C-]> :NERDTreeFind<CR>  
+map <C-]> :NERDTreeFind<CR>
 
 " Silver Searcher
 if executable('ag')
@@ -80,11 +79,9 @@ endif
 set completeopt=menuone
 let g:ycm_add_preview_to_completeopt = 0
 nnoremap <leader>j :YcmCompleter GoTo<CR>
-hi Pmenu ctermbg=DarkGrey ctermfg=White 
-hi PmenuSel ctermbg=White ctermfg=DarkGrey 
+hi Pmenu ctermbg=DarkGrey ctermfg=White
+hi PmenuSel ctermbg=White ctermfg=DarkGrey
 
 " Plugins
 filetype plugin indent on
 
-execute pathogen#infect()
-call pathogen#helptags()
