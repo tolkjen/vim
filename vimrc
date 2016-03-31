@@ -29,8 +29,8 @@ let mapleader = ","
 " Theme and colors
 set t_Co=256
 set background=dark
-set encoding=utf-8
 colorscheme monochrome
+set encoding=utf-8
 
 " Command aliases
 cabbrev tp tabprev
@@ -68,7 +68,7 @@ let g:syntastic_quiet_messages = { "type": "style" }
 
 " NERDTree
 map <C-\> :NERDTreeToggle<CR>
-map <C-]> :NERDTreeFind<CR>  
+map <C-]> :NERDTreeFind<CR>
 
 " Tagbar
 "nnoremap <C-[> :TagbarToggle<CR>
@@ -90,8 +90,8 @@ endif
 set completeopt=menuone
 let g:ycm_add_preview_to_completeopt = 0
 nnoremap <leader>j :YcmCompleter GoTo<CR>
-hi Pmenu ctermbg=DarkGrey ctermfg=White 
-hi PmenuSel ctermbg=White ctermfg=DarkGrey 
+hi Pmenu ctermbg=DarkGrey ctermfg=White
+hi PmenuSel ctermbg=White ctermfg=DarkGrey
 
 " Airline
 let g:airline_theme='jellybeans'
