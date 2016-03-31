@@ -22,12 +22,15 @@ set splitright
 " Map <leader> to ,
 let mapleader = ","
 
+" Edit and source .vimrc quickly
+:nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+:nnoremap <leader>sv :source $MYVIMRC<CR>
+
 " Theme and colors
-colorscheme desert
+set t_Co=256
 set background=dark
 set encoding=utf-8
-"set t_Co=256
-"colorscheme desert256
+colorscheme monochrome
 
 " Command aliases
 cabbrev tp tabprev
@@ -36,8 +39,8 @@ cabbrev tf tabfirst
 cabbrev tl tablast
 
 " Softtabs, 2 spaces
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 
 " Remove search highlight with <C-L>.
@@ -46,6 +49,10 @@ nnoremap <silent> <C-l> :nohl<CR><C-l>
 " Ctrl-P
 let g:fuzzy_ignore = "*.pyc;coverage/**;"
 let g:ctrlp_match_window = 'results:25' " Generate more search results 
+let g:ctrlp_working_path_mode = 0
+
+" ctrlp-py-matcher
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
 " Syntastic
 "set statusline+=%#warningmsg#
@@ -62,6 +69,9 @@ let g:syntastic_quiet_messages = { "type": "style" }
 " NERDTree
 map <C-\> :NERDTreeToggle<CR>
 map <C-]> :NERDTreeFind<CR>  
+
+" Tagbar
+"nnoremap <C-[> :TagbarToggle<CR>
 
 " Silver Searcher
 if executable('ag')
@@ -83,8 +93,10 @@ nnoremap <leader>j :YcmCompleter GoTo<CR>
 hi Pmenu ctermbg=DarkGrey ctermfg=White 
 hi PmenuSel ctermbg=White ctermfg=DarkGrey 
 
+" Airline
+let g:airline_theme='jellybeans'
+let g:airline_powerline_fonts = 1
+
 " Plugins
 filetype plugin indent on
 
-execute pathogen#infect()
-call pathogen#helptags()
