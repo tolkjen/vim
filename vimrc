@@ -23,8 +23,14 @@ set splitright
 let mapleader = ","
 
 " Edit and source .vimrc quickly
-:nnoremap <leader>ev :vsplit $MYVIMRC<CR>
-:nnoremap <leader>sv :source $MYVIMRC<CR>
+nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+" Easy copy/paste/replace wordunder cursor
+nnoremap <leader>y yiw
+nnoremap <leader>r "_diw"0P
+noremap <leader>p "0p
+noremap <leader>P "0P
 
 " Theme and colors
 set t_Co=256
