@@ -32,6 +32,10 @@ nnoremap <leader>r "_diw"0P
 noremap <leader>p "0p
 noremap <leader>P "0P
 
+" East goto beginning/end of the line
+nnoremap H ^
+nnoremap L $
+
 " Theme and colors
 set t_Co=256
 set background=dark
