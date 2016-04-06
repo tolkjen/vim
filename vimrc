@@ -19,8 +19,12 @@ set noantialias
 set splitbelow
 set splitright
 
-" Map <leader> to ,
+" Frequenty used mappings
 let mapleader = ","
+inoremap vv <esc>
+inoremap <esc> <nop>
+vnoremap vv <esc>
+vnoremap <esc> <nop>
 
 " Edit and source .vimrc quickly
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
