@@ -21,9 +21,11 @@ set splitright
 
 " Frequenty used mappings
 let mapleader = ","
-inoremap vv <esc>
-inoremap <esc> <nop>
 vnoremap vv <esc>
+inoremap vv <esc>
+vnoremap ;; <esc>
+inoremap ;; <esc>
+inoremap <esc> <nop>
 vnoremap <esc> <nop>
 
 " Edit and source .vimrc quickly
