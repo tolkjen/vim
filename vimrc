@@ -23,10 +23,10 @@ set splitright
 let mapleader = ","
 vnoremap vv <esc>
 inoremap vv <esc>
-vnoremap ;; <esc>
-inoremap ;; <esc>
 inoremap <esc> <nop>
 vnoremap <esc> <nop>
+nnoremap <C-j> <C-e>
+nnoremap <C-k> <C-y>
 
 " Edit and source .vimrc quickly
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
