@@ -16,7 +16,7 @@ set showcmd       " display incomplete commands
 set smartcase
 set ignorecase
 set noantialias
-set splitbelow
+"set splitbelow
 set splitright
 
 " Frequenty used mappings
@@ -32,11 +32,8 @@ nnoremap <C-k> <C-y>
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
-" Easy copy/paste/replace wordunder cursor
-nnoremap <leader>y yiw
-nnoremap <leader>r "_diw"0P
-noremap <leader>p "0p
-noremap <leader>P "0P
+" Replace under cursor
+nnoremap <leader>z :%s/\<<C-r><C-w>\>//gc<Left><Left><Left>
 
 " East goto beginning/end of the line
 nnoremap H ^
@@ -87,7 +84,7 @@ map <C-\> :NERDTreeToggle<CR>
 map <C-]> :NERDTreeFind<CR>
 
 " Tagbar
-"nnoremap <C-[> :TagbarToggle<CR>
+nnoremap <C-[> :TagbarToggle<CR>
 
 " Silver Searcher
 if executable('ag')
