@@ -27,6 +27,8 @@ inoremap <esc> <nop>
 vnoremap <esc> <nop>
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
+nnoremap <C-n> <C-d>
+nnoremap <C-i> <C-u>
 
 " Edit and source .vimrc quickly
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -84,7 +86,7 @@ map <C-\> :NERDTreeToggle<CR>
 map <C-]> :NERDTreeFind<CR>
 
 " Tagbar
-nnoremap <C-[> :TagbarToggle<CR>
+"nnoremap <C-[> :TagbarToggle<CR>
 
 " Silver Searcher
 if executable('ag')
