@@ -28,6 +28,16 @@ vnoremap <esc> <nop>
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
 
+" Copy and paste using X11 clipboard
+vnoremap d "+d
+nnoremap d "+d
+vnoremap p "+p
+nnoremap p "+p
+
+" If doing a diff. Upon writing changes to file, automatically update the
+" differences
+autocmd BufWritePost * if &diff == 1 | diffupdate | endif
+
 " Edit and source .vimrc quickly
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
@@ -52,8 +62,8 @@ cabbrev tf tabfirst
 cabbrev tl tablast
 
 " Softtabs, 2 spaces
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set expandtab
 
 " Remove search highlight with <C-L>.
