@@ -10,7 +10,7 @@ set nocompatible  " Use Vim settings, rather then Vi settings
 set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
 set nowritebackup
 set number
-set numberwidth=4
+set numberwidth=2
 set ruler         " show the cursor position all the time
 set showcmd       " display incomplete commands
 set smartcase
@@ -18,6 +18,7 @@ set ignorecase
 set noantialias
 "set splitbelow
 set splitright
+set cursorline
 
 " Frequenty used mappings
 let mapleader = ","
@@ -27,12 +28,19 @@ inoremap <esc> <nop>
 vnoremap <esc> <nop>
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
+nnoremap <C-n> <C-d>
+nnoremap <C-i> <C-u>
+nnoremap <C-h> gT
+nnoremap <C-l> gt
 
 " Copy and paste using X11 clipboard
 vnoremap d "+d
 nnoremap d "+d
+vnoremap y "+y
+nnoremap y "+y
 vnoremap p "+p
 nnoremap p "+p
+nnoremap x "+x
 
 " If doing a diff. Upon writing changes to file, automatically update the
 " differences
@@ -67,7 +75,7 @@ set shiftwidth=2
 set expandtab
 
 " Remove search highlight with <C-L>.
-nnoremap <silent> <C-l> :nohl<CR><C-l>
+nnoremap <silent> <C-m> :nohl<CR>
 
 " Ctrl-P
 let g:fuzzy_ignore = "*.pyc;coverage/**;"
@@ -77,24 +85,12 @@ let g:ctrlp_working_path_mode = 0
 " ctrlp-py-matcher
 let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
 
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-" Disable style checking
-let g:syntastic_quiet_messages = { "type": "style" }
-
 " NERDTree
 map <C-\> :NERDTreeToggle<CR>
 map <C-]> :NERDTreeFind<CR>
 
 " Tagbar
-nnoremap <C-[> :TagbarToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
 
 " Silver Searcher
 if executable('ag')
