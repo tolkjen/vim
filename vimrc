@@ -18,6 +18,7 @@ set ignorecase
 set noantialias
 "set splitbelow
 set splitright
+set cursorline
 
 " Frequenty used mappings
 let mapleader = ","
@@ -33,6 +34,8 @@ nnoremap <C-i> <C-u>
 " Copy and paste using X11 clipboard
 vnoremap d "+d
 nnoremap d "+d
+vnoremap y "+y
+nnoremap y "+y
 vnoremap p "+p
 nnoremap p "+p
 
@@ -94,9 +97,11 @@ let g:syntastic_quiet_messages = { "type": "style" }
 " NERDTree
 map <C-\> :NERDTreeToggle<CR>
 map <C-]> :NERDTreeFind<CR>
+let g:NERDTreeWinSize=40
 
 " Tagbar
-"nnoremap <C-[> :TagbarToggle<CR>
+nnoremap <F8> :TagbarToggle<CR>
+let g:tagbar_autofocus = 1
 
 " Silver Searcher
 if executable('ag')
