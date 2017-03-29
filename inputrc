@@ -9,5 +9,4 @@ set output-meta on
 "\C-k":forward-word
 
 # Killing
-"\C-i":kill-whole-line
 "\C-n":backward-kill-word
