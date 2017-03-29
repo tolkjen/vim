@@ -1,0 +1,13 @@
+# Be 8 bit clean.
+set input-meta on
+set output-meta on
+
+# Movement
+"\C-h":beginning-of-line
+"\C-l":end-of-line
+"\C-j":backward-word
+"\C-k":forward-word
+
+# Killing
+"\C-i":kill-whole-line
+"\C-n":backward-kill-word
