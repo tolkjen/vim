@@ -3,10 +3,12 @@ set input-meta on
 set output-meta on
 
 # Movement
-"\C-h":beginning-of-line
-"\C-l":end-of-line
-"\C-j":backward-word
-"\C-k":forward-word
+"\C-h":backward-word
+"\C-l":forward-word
+
+# History
+"\C-k":previous-history
+"\C-j":next-history
 
 # Killing
 "\C-n":backward-kill-word
