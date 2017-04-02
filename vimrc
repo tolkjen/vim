@@ -2,7 +2,6 @@ set autoindent
 set backspace=indent,eol,start
 set backup
 set cursorline
-set expandtab
 set history=500
 set hlsearch      " highlight matches
 set ignorecase
@@ -21,6 +20,9 @@ set showcmd       " display incomplete commands
 set smartcase
 set splitright
 set tabstop=2
+set shiftwidth=2    " Indents will have a width of 4
+set softtabstop=2   " Sets the number of columns for a TAB
+set expandtab       " Expand TABs to spaces
 
 " 80 char highlight
 set cc=81
@@ -93,6 +95,27 @@ let g:ycm_add_preview_to_completeopt = 0
 nnoremap <leader>j :YcmCompleter GoTo<CR>
 hi Pmenu ctermbg=DarkGrey ctermfg=White
 hi PmenuSel ctermbg=White ctermfg=DarkGrey
+
+" Ctrl-P
+let g:fuzzy_ignore = "*.pyc;coverage/**;"
+let g:ctrlp_match_window = 'results:25' " Generate more search results
+let g:ctrlp_working_path_mode = 0
+
+" ctrlp-py-matcher
+let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+
+" Silver Searcher
+if executable('ag')
+  " Use Ag over Grep
+  set grepprg=ag\ --nogroup
+  let g:grep_cmd_opts = '--line-numbers --noheading'
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
 
 " Plugins
 filetype plugin indent on
