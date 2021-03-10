@@ -11,7 +11,7 @@ set laststatus=2  " Always display the status line
 set noantialias
 set nobackup
 set nocompatible  " Use Vim settings, rather then Vi settings
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
+set noswapfile
 set nowritebackup
 set number
 set numberwidth=2
