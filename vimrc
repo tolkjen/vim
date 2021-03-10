@@ -2,6 +2,7 @@ set autoindent
 set backspace=indent,eol,start
 set backup
 set cursorline
+set expandtab     " Expand TABs to spaces
 set history=500
 set hlsearch      " highlight matches
 set ignorecase
@@ -15,17 +16,16 @@ set nowritebackup
 set number
 set numberwidth=2
 set ruler         " show the cursor position all the time
-set shiftwidth=2
+set shiftwidth=2  " Indents will have a width of 4
 set showcmd       " display incomplete commands
 set smartcase
+set softtabstop=2 " Sets the number of columns for a TAB
 set splitright
 set tabstop=2
-set shiftwidth=2    " Indents will have a width of 4
-set softtabstop=2   " Sets the number of columns for a TAB
-set expandtab       " Expand TABs to spaces
 
 " 80 char highlight
 set cc=81
+set textwidth=80
 highlight ColorColumn ctermbg=8
 
 " Theme and colors
@@ -46,19 +46,8 @@ inoremap <esc> <nop>
 vnoremap <esc> <nop>
 nnoremap <C-j> <C-e>
 nnoremap <C-k> <C-y>
-nnoremap <C-n> <C-d>
-nnoremap <C-i> <C-u>
 nnoremap <C-h> gT
 nnoremap <C-l> gt
-
-" Copy and paste using X11 clipboard
-vnoremap d "+d
-nnoremap d "+d
-vnoremap y "+y
-nnoremap y "+y
-vnoremap p "+p
-nnoremap p "+p
-nnoremap x "+x
 
 " Edit and source .vimrc quickly
 nnoremap <leader>ev :vsplit $MYVIMRC<CR>
@@ -77,32 +66,23 @@ nnoremap <silent> <C-m> :nohl<CR>
 " Tab split
 nnoremap <silent> <leader>ts :tab split<CR>
 
+" paste
+nnoremap <leader>pp :set paste!<CR>
+
+" netrw
+nnoremap <leader>e :Explore<CR>
+nnoremap <leader>te :Texplore<CR>
+
 " Toggle spell check
 nnoremap <silent> <leader>sc :setlocal spell! spelllang=en_us<CR>
-
-" NERDTree
-nnoremap <C-\> :NERDTreeToggle<CR>
-nnoremap <C-]> :NERDTreeFind<CR>
-let g:NERDTreeWinSize=40
-
-" Tagbar
-nnoremap <F8> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-
-" YCM
-set completeopt=menuone
-let g:ycm_add_preview_to_completeopt = 0
-nnoremap <leader>j :YcmCompleter GoTo<CR>
-hi Pmenu ctermbg=DarkGrey ctermfg=White
-hi PmenuSel ctermbg=White ctermfg=DarkGrey
 
 " Ctrl-P
 let g:fuzzy_ignore = "*.pyc;coverage/**;"
 let g:ctrlp_match_window = 'results:25' " Generate more search results
 let g:ctrlp_working_path_mode = 0
 
-" ctrlp-py-matcher
-let g:ctrlp_match_func = { 'match': 'pymatcher#PyMatch' }
+" Code locations to index
+let g:code_paths = []
 
 " Silver Searcher
 if executable('ag')
@@ -111,12 +91,31 @@ if executable('ag')
   let g:grep_cmd_opts = '--line-numbers --noheading'
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag %s -l -g ""'
-
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+  let g:ctrlp_user_command = 'ag ' . join(g:code_paths, ' ') . ' -l -g ""'
+  let g:ctrlp_use_caching = 1
 endif
+
+" Ack
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --silent'
+endif
+
+" Ag
+function! s:MyAgFunc(...)
+  let l:pattern = a:1
+  " Setting shellpipe hides ag's stdout in terminal
+  set shellpipe=>
+  if a:0 == 1
+    execute "Ack! " . l:pattern . " " . join(g:code_paths, " ")
+  else
+    let l:ext = a:2
+    execute "Ack! -G " . l:ext . "$ " . l:pattern . " " . join(g:code_paths, " ")
+  endif
+  set shellpipe=2>&1\|tee
+endfunction
+
+command! -nargs=+ Ag call s:MyAgFunc(<f-args>)
+nnoremap <leader>ss :Ag<space>
 
 " Plugins
 filetype plugin indent on
-
