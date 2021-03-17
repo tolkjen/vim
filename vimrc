@@ -36,7 +36,6 @@ set encoding=utf-8
 
 " Airline
 let g:airline_theme='jellybeans'
-let g:airline_powerline_fonts = 1
 
 " Frequenty used mappings
 let mapleader = ","
