@@ -50,7 +50,7 @@ nnoremap <C-h> gT
 nnoremap <C-l> gt
 
 " Edit and source .vimrc quickly
-nnoremap <leader>ev :vsplit $MYVIMRC<CR>
+nnoremap <leader>ev :e $MYVIMRC<CR>
 nnoremap <leader>sv :source $MYVIMRC<CR>
 
 " Replace under cursor
@@ -67,7 +67,7 @@ nnoremap <silent> <C-m> :nohl<CR>
 nnoremap <silent> <leader>ts :tab split<CR>
 
 " paste
-nnoremap <leader>pp :set paste!<CR>
+nnoremap <leader>tp :set paste!<CR>
 
 " netrw
 nnoremap <leader>e :Explore<CR>
@@ -80,42 +80,3 @@ nnoremap <silent> <leader>sc :setlocal spell! spelllang=en_us<CR>
 let g:fuzzy_ignore = "*.pyc;coverage/**;"
 let g:ctrlp_match_window = 'results:25' " Generate more search results
 let g:ctrlp_working_path_mode = 0
-
-" Code locations to index
-let g:code_paths = []
-
-" Silver Searcher
-if executable('ag')
-  " Use Ag over Grep
-  set grepprg=ag\ --nogroup
-  let g:grep_cmd_opts = '--line-numbers --noheading'
-
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-  let g:ctrlp_user_command = 'ag ' . join(g:code_paths, ' ') . ' -l -g ""'
-  let g:ctrlp_use_caching = 1
-endif
-
-" Ack
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --silent'
-endif
-
-" Ag
-function! s:MyAgFunc(...)
-  let l:pattern = a:1
-  " Setting shellpipe hides ag's stdout in terminal
-  set shellpipe=>
-  if a:0 == 1
-    execute "Ack! " . l:pattern . " " . join(g:code_paths, " ")
-  else
-    let l:ext = a:2
-    execute "Ack! -G " . l:ext . "$ " . l:pattern . " " . join(g:code_paths, " ")
-  endif
-  set shellpipe=2>&1\|tee
-endfunction
-
-command! -nargs=+ Ag call s:MyAgFunc(<f-args>)
-nnoremap <leader>ss :Ag<space>
-
-" Plugins
-filetype plugin indent on
